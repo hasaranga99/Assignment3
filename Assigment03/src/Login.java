@@ -56,7 +56,6 @@ public class Login extends javax.swing.JFrame {
         jLabel4.setText("password");
 
         jTextField1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -64,7 +63,6 @@ public class Login extends javax.swing.JFrame {
         });
 
         jPasswordField1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jPasswordField1.setForeground(new java.awt.Color(255, 255, 255));
         jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jPasswordField1ActionPerformed(evt);
@@ -169,6 +167,7 @@ public class Login extends javax.swing.JFrame {
         Register reg = new Register();
         reg.setVisible(true);
         this.setVisible(false);
+        
         
     }//GEN-LAST:event_jLabel5MouseClicked
 
