@@ -1,3 +1,7 @@
+
+import com.sun.glass.events.KeyEvent;
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -88,16 +92,52 @@ public class Register extends javax.swing.JFrame {
         jLabel9.setText("password");
 
         jTextField2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField2KeyReleased(evt);
+            }
+        });
 
         jTextField3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField3KeyReleased(evt);
+            }
+        });
 
         jTextField4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField4KeyReleased(evt);
+            }
+        });
 
         jTextField5.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jTextField5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField5KeyReleased(evt);
+            }
+        });
 
         jTextField6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jTextField6.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField6KeyReleased(evt);
+            }
+        });
 
         jTextField7.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jTextField7.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField7KeyReleased(evt);
+            }
+        });
+
+        jPasswordField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jPasswordField1KeyReleased(evt);
+            }
+        });
 
         jLabel10.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
@@ -108,11 +148,21 @@ public class Register extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jButton1.setText("REGISTER");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton2.setText("BACK");
 
         jTextField8.setFont(new java.awt.Font("Arial", 0, 14));
+        jTextField8.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField8KeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -211,6 +261,215 @@ public class Register extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(1063, 639));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+         if(jTextField3.getText().contains("@") && jTextField3.getText().contains(".")){
+            
+           // JOptionPane.showMessageDialog(this,"Email is vlid!","Success!",JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            JOptionPane.showMessageDialog(this,"Email is Invalid!, Please Enter Contain @ & . on your email ","ERROR!",JOptionPane.ERROR_MESSAGE);
+            jTextField3.setText(null);
+            jTextField3.grabFocus();
+        }
+        
+        String a = jTextField4.getText();
+        int b = a.length();
+        
+        if(b>8 && b<13){
+            //JOptionPane.showMessageDialog(this,"Contact No is valid!","Success!",JOptionPane.INFORMATION_MESSAGE);
+        }else{
+             JOptionPane.showMessageDialog(this,"Contact No is Invalid!, Please Type Only length of 9-12 Digits","ERROR!",JOptionPane.ERROR_MESSAGE);
+            jTextField4.setText(null);
+            jTextField4.grabFocus();
+        }
+      
+        String un = jTextField8.getText();
+        String fn = jTextField2.getText();
+        String em = jTextField3.getText();
+        String cn = jTextField4.getText();
+        String ad = jTextField5.getText();
+        String dg = jTextField6.getText();
+        String sk = jTextField7.getText();
+        String pw = jPasswordField1.getText();   
+        
+        if(un.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please Enter Valid Username! ","ERROR!",JOptionPane.ERROR_MESSAGE);
+            jTextField8.setText(null);
+            jTextField8.grabFocus();
+        }else if(fn.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please Enter Valid Full name ! ","ERROR!",JOptionPane.ERROR_MESSAGE);
+            jTextField2.setText(null);
+            jTextField2.grabFocus();
+        }else if(em.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please Enter Valid Email! ","ERROR!",JOptionPane.ERROR_MESSAGE);
+            jTextField3.setText(null);
+            jTextField3.grabFocus();
+        }else if(cn.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please Enter Valid Contact no! ","ERROR!",JOptionPane.ERROR_MESSAGE);
+            jTextField4.setText(null);
+            jTextField4.grabFocus();
+        }else if(ad.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please Enter Valid Address! ","ERROR!",JOptionPane.ERROR_MESSAGE);
+            jTextField5.setText(null);
+            jTextField5.grabFocus();
+        }else if(dg.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please Enter Valid Designation! ","ERROR!",JOptionPane.ERROR_MESSAGE);
+            jTextField6.setText(null);
+            jTextField6.grabFocus();
+        }else if(sk.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please Enter Valid SERIAL KEY! ","ERROR!",JOptionPane.ERROR_MESSAGE);
+            jTextField7.setText(null);
+            jTextField7.grabFocus();
+        }else if(pw.isEmpty()){
+           JOptionPane.showMessageDialog(this, "Please Enter Valid Password! ","ERROR!",JOptionPane.ERROR_MESSAGE);
+            jPasswordField1.setText(null);
+            jPasswordField1.grabFocus();
+        }else{
+            try {
+                if (sk.equals("0") | sk.equals("1")){
+                DBC.iud("INSERT INTO user(`username`,`password`,`serial`)VALUES ('"+un+"','"+pw+"','"+sk+"')");
+               JOptionPane.showMessageDialog(this, "New user added Successfully!", "DONE!", JOptionPane.INFORMATION_MESSAGE);
+                }
+                if(sk.equals("0")){
+                    DBC.iud("INSERT INTO opera(`username`,`fullname`,`email`,`contact`,`address`,`desig`,`serial`,`password`)VALUES('"+un+"','"+fn+"','"+em+"','"+cn+"','"+ad+"','"+dg+"','"+sk+"','"+pw+"')");
+                    JOptionPane.showMessageDialog(this, "New Operater added Successfully!", "DONE!", JOptionPane.INFORMATION_MESSAGE);
+                    Login lf = new Login();
+                    lf.setVisible(true);
+                    this.dispose();
+                
+                }
+                if(sk.equals("1")){
+                    DBC.iud("INSERT INTO admin(`username`,`fullname`,`email`,`contact`,`address`,`desig`,`serial`,`password`)VALUES('"+un+"','"+fn+"','"+em+"','"+cn+"','"+ad+"','"+dg+"','"+sk+"','"+pw+"')");
+                    JOptionPane.showMessageDialog(this, "New administrators added Successfully!", "DONE!", JOptionPane.INFORMATION_MESSAGE);
+                    Login lf = new Login();
+                    lf.setVisible(true);
+                    this.dispose();
+                
+                    
+                }else {
+                JOptionPane.showMessageDialog(this, "Please Enter Valid SERIAL KEY! ","ERROR!",JOptionPane.ERROR_MESSAGE);
+                jPasswordField1.setText(null);
+                jPasswordField1.grabFocus();
+                }
+                 
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            
+        }
+        
+    
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField8KeyReleased
+        // TODO add your handling code here:
+         char letter = evt.getKeyChar();
+        if(Character.isLetter(letter) | evt.getKeyCode()== KeyEvent.VK_SPACE | evt.getKeyCode() == KeyEvent.VK_BACKSPACE | evt.getKeyCode() == KeyEvent.VK_PERIOD | evt.getKeyCode()== KeyEvent.VK_SHIFT | evt.getKeyCode()== KeyEvent.VK_CAPS_LOCK | evt.getKeyCode()== KeyEvent.VK_ENTER | evt.getKeyCode()== KeyEvent.VK_PLUS|evt.getKeyCode() == KeyEvent.VK_CONTROL| evt.getKeyCode() == KeyEvent.VK_V){
+            jTextField8.setEditable(true);
+             String un = jTextField8.getText();
+        }else{
+            jTextField8.setEditable(false);
+            JOptionPane.showMessageDialog(this,"Please Enter Alphebetic or space, Backspace, Dot only.", "ERROR!", JOptionPane.ERROR_MESSAGE);
+            jTextField8.setText(null);
+            jTextField8.grabFocus();
+        }
+    }//GEN-LAST:event_jTextField8KeyReleased
+
+    private void jTextField2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyReleased
+        // TODO add your handling code here:
+            char letter = evt.getKeyChar();
+        if(Character.isLetter(letter) | evt.getKeyCode()== KeyEvent.VK_SPACE | evt.getKeyCode() == KeyEvent.VK_BACKSPACE | evt.getKeyCode() == KeyEvent.VK_PERIOD | evt.getKeyCode()== KeyEvent.VK_SHIFT | evt.getKeyCode()== KeyEvent.VK_CAPS_LOCK | evt.getKeyCode()== KeyEvent.VK_ENTER | evt.getKeyCode()== KeyEvent.VK_PLUS |evt.getKeyCode() == KeyEvent.VK_CONTROL| evt.getKeyCode() == KeyEvent.VK_V){
+            jTextField2.setEditable(true);
+             String un = jTextField2.getText();
+        }else{
+            jTextField2.setEditable(false);
+            JOptionPane.showMessageDialog(this,"Please Enter Alphebetic or space, Backspace, Dot only.", "ERROR!", JOptionPane.ERROR_MESSAGE);
+            jTextField2.setText(null);
+            jTextField2.grabFocus();
+        }
+    }//GEN-LAST:event_jTextField2KeyReleased
+
+    private void jTextField3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyReleased
+        // TODO add your handling code here:
+          char charc = evt.getKeyChar();
+        if(Character.isDigit(charc) | Character.isLetter(charc)| Character.isLowerCase(charc) | evt.getKeyCode()== KeyEvent.VK_BACKSPACE | evt.getKeyCode()== KeyEvent.VK_MINUS |evt.getKeyCode()== KeyEvent.VK_SHIFT |evt.getKeyCode()== KeyEvent.VK_2 |evt.getKeyCode()== KeyEvent.VK_PERIOD |evt.getKeyCode()== KeyEvent.VK_SPACE | evt.getKeyCode()== KeyEvent.VK_ENTER|evt.getKeyCode() == KeyEvent.VK_CONTROL| evt.getKeyCode() == KeyEvent.VK_V){ 
+            jTextField3.setEditable(true);
+        }else{
+            jTextField3.setEditable(false);
+            JOptionPane.showMessageDialog(this,"PLease Enter Valid Characters only","ERROR",JOptionPane.ERROR_MESSAGE);
+            jTextField3.setText(null);
+            jTextField3.grabFocus();
+            
+        }
+    }//GEN-LAST:event_jTextField3KeyReleased
+
+    private void jTextField4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyReleased
+        // TODO add your handling code here:
+         char number = evt.getKeyChar();
+        if(Character.isDigit(number)| evt.getKeyCode()== KeyEvent.VK_SPACE | evt.getKeyCode() == KeyEvent.VK_BACKSPACE | evt.getKeyCode()== KeyEvent.VK_SHIFT | evt.getKeyCode()== KeyEvent.VK_CAPS_LOCK | evt.getKeyCode()== KeyEvent.VK_EQUALS | evt.getKeyCode()== KeyEvent.VK_PLUS | evt.getKeyCode()== KeyEvent.VK_MINUS | evt.getKeyCode()== KeyEvent.VK_ENTER|evt.getKeyCode() == KeyEvent.VK_CONTROL | evt.getKeyCode() == KeyEvent.VK_V)  {
+            jTextField4.setEditable(true);
+        }else {
+            jTextField4.setEditable(false);
+            JOptionPane.showMessageDialog(this,"Please Enter Numeric or space, Backspace, minus only.", "ERROR!", JOptionPane.ERROR_MESSAGE);
+            jTextField4.setText(null);
+            jTextField4.grabFocus();
+        }
+    }//GEN-LAST:event_jTextField4KeyReleased
+
+    private void jTextField5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyReleased
+        // TODO add your handling code here:
+        char charc = evt.getKeyChar();
+        if(Character.isDigit(charc) | Character.isLetter(charc)| Character.isLowerCase(charc) | evt.getKeyCode()== KeyEvent.VK_BACKSPACE | evt.getKeyCode()== KeyEvent.VK_MINUS |evt.getKeyCode()== KeyEvent.VK_SHIFT |evt.getKeyCode()== KeyEvent.VK_2 |evt.getKeyCode()== KeyEvent.VK_PERIOD |evt.getKeyCode()== KeyEvent.VK_SPACE | evt.getKeyCode()== KeyEvent.VK_ENTER |evt.getKeyCode() == KeyEvent.VK_CONTROL | evt.getKeyCode() == KeyEvent.VK_V){ 
+            jTextField5.setEditable(true);
+        }else{
+            jTextField5.setEditable(false);
+            JOptionPane.showMessageDialog(this,"PLease Enter Valid Characters only","ERROR",JOptionPane.ERROR_MESSAGE);
+            jTextField5.setText(null);
+            jTextField5.grabFocus();
+            
+        }
+    }//GEN-LAST:event_jTextField5KeyReleased
+
+    private void jTextField6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField6KeyReleased
+        // TODO add your handling code here:
+                char letter = evt.getKeyChar();
+        if(Character.isLetter(letter) | evt.getKeyCode()== KeyEvent.VK_SPACE | evt.getKeyCode() == KeyEvent.VK_BACKSPACE | evt.getKeyCode() == KeyEvent.VK_PERIOD | evt.getKeyCode()== KeyEvent.VK_SHIFT | evt.getKeyCode()== KeyEvent.VK_CAPS_LOCK | evt.getKeyCode()== KeyEvent.VK_ENTER | evt.getKeyCode()== KeyEvent.VK_PLUS |evt.getKeyCode() == KeyEvent.VK_CONTROL| evt.getKeyCode() == KeyEvent.VK_V){
+            jTextField6.setEditable(true);
+        }else{
+            jTextField6.setEditable(false);
+            JOptionPane.showMessageDialog(this,"Please Enter Alphebetic or space, Backspace, Dot only.", "ERROR!", JOptionPane.ERROR_MESSAGE);
+            jTextField6.setText(null);
+            jTextField6.grabFocus();
+        }
+    }//GEN-LAST:event_jTextField6KeyReleased
+
+    private void jTextField7KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField7KeyReleased
+        // TODO add your handling code here:
+          char number = evt.getKeyChar();
+        if(Character.isDigit(number)| evt.getKeyCode()== KeyEvent.VK_SPACE | evt.getKeyCode() == KeyEvent.VK_BACKSPACE | evt.getKeyCode()== KeyEvent.VK_SHIFT | evt.getKeyCode()== KeyEvent.VK_CAPS_LOCK | evt.getKeyCode()== KeyEvent.VK_EQUALS | evt.getKeyCode()== KeyEvent.VK_PLUS | evt.getKeyCode()== KeyEvent.VK_MINUS | evt.getKeyCode()== KeyEvent.VK_ENTER|evt.getKeyCode() == KeyEvent.VK_CONTROL| evt.getKeyCode() == KeyEvent.VK_V)  {
+            jTextField7.setEditable(true);
+        }else {
+            jTextField7.setEditable(false);
+            JOptionPane.showMessageDialog(this,"Please Enter Numeric or space, Backspace, minus only.", "ERROR!", JOptionPane.ERROR_MESSAGE);
+            jTextField7.setText(null);
+            jTextField7.grabFocus();
+        }
+    }//GEN-LAST:event_jTextField7KeyReleased
+
+    private void jPasswordField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordField1KeyReleased
+        // TODO add your handling code here:
+         char charc = evt.getKeyChar();
+        if(Character.isDigit(charc) | Character.isLetter(charc)| evt.getKeyCode()== KeyEvent.VK_BACKSPACE | evt.getKeyCode()== KeyEvent.VK_MINUS |evt.getKeyCode()== KeyEvent.VK_SHIFT |evt.getKeyCode()== KeyEvent.VK_2 |evt.getKeyCode()== KeyEvent.VK_PERIOD |evt.getKeyCode()== KeyEvent.VK_SPACE | evt.getKeyCode()== KeyEvent.VK_ENTER|evt.getKeyCode() == KeyEvent.VK_CONTROL| evt.getKeyCode() == KeyEvent.VK_V){ 
+            jPasswordField1.setEditable(true);
+        }else{
+            jPasswordField1.setEditable(false);
+            JOptionPane.showMessageDialog(this,"PLease Enter Valid Characters only","ERROR",JOptionPane.ERROR_MESSAGE);
+            jPasswordField1.setText(null);
+           jPasswordField1.grabFocus();
+            
+        }
+    }//GEN-LAST:event_jPasswordField1KeyReleased
 
     /**
      * @param args the command line arguments
