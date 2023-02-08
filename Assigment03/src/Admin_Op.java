@@ -1,3 +1,13 @@
+
+import java.sql.ResultSet;
+import java.text.MessageFormat;
+import java.util.Vector;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -15,6 +25,40 @@ public class Admin_Op extends javax.swing.JFrame {
      */
     public Admin_Op() {
         initComponents();
+        
+         try {
+            
+            ResultSet rs =  DBC.search("SELECT * FROM opera");
+            while(rs.next()){
+            String id = rs.getString("id");
+            String un = rs.getString("username");
+            String fn = rs.getString("fullname");
+            String em = rs.getString("email");
+            String cn = rs.getString("contact");
+            String ad = rs.getString("address");
+            String dg = rs.getString("desig");
+            String sk = rs.getString("serial");
+            String pw = rs.getString("password");
+            
+            Vector v = new Vector();
+            v.add(id);
+            v.add(un);
+            v.add(fn);
+            v.add(em);
+            v.add(cn);
+            v.add(ad);
+            v.add(dg);
+            v.add(sk);
+            v.add(pw);
+            
+            DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+            dtm.addRow(v);
+            
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -57,25 +101,42 @@ public class Admin_Op extends javax.swing.JFrame {
         jLabel5.setText("SEARCH");
 
         jTextField1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField1KeyReleased(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "USERNAME", "FULLNAME", "EMAIL", "CONTACT NO", "ADDRESS", "DESIGNATION", "SERIAL_KEY", "PASSWORD"
+                "ID", "USERNAME", "FULLNAME", "EMAIL", "CONTACT NO", "ADDRESS", "DESIGNATION", "SERIAL_KEY", "PASSWORD"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButton1.setText("BACK");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButton2.setText("PRINT");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -83,9 +144,19 @@ public class Admin_Op extends javax.swing.JFrame {
 
         jButton3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButton3.setText("REMOVE");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButton4.setText("UPDATE");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -177,6 +248,86 @@ public class Admin_Op extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(1066, 639));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        
+        try {
+            int r = jTable1.getSelectedRow();
+            String id = String.valueOf(jTable1.getValueAt(r, 0));
+            DBC.iud("DELETE FROM opera WHERE `id` = '"+id+"'");
+            DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+            dtm.removeRow(r);
+            JOptionPane.showMessageDialog(this,"Row is removed successfully","DONE!",JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        try {
+            int r = jTable1.getSelectedRow();
+            String id  = String.valueOf(jTable1.getValueAt(r, 0));
+            String un  = String.valueOf(jTable1.getValueAt(r, 1));
+            String fn  = String.valueOf(jTable1.getValueAt(r, 2));
+            String em  = String.valueOf(jTable1.getValueAt(r, 3));
+            String cn  = String.valueOf(jTable1.getValueAt(r, 4));
+            String ad  = String.valueOf(jTable1.getValueAt(r, 5));
+            String dg  = String.valueOf(jTable1.getValueAt(r, 6));
+            String sk  = String.valueOf(jTable1.getValueAt(r, 7));
+            String pw  = String.valueOf(jTable1.getValueAt(r, 8));
+            DBC.iud("UPDATE opera SET `username` = '"+un+"' WHERE `id` = '"+id+"' ");
+            DBC.iud("UPDATE opera SET `fullname` = '"+fn+"' WHERE `id` = '"+id+"' ");
+            DBC.iud("UPDATE opera SET `email` = '"+em+"' WHERE `id` = '"+id+"' ");
+            DBC.iud("UPDATE opera SET `contact` = '"+cn+"' WHERE `id` = '"+id+"' ");
+            DBC.iud("UPDATE opera SET `address` = '"+ad+"' WHERE `id` = '"+id+"' ");
+            DBC.iud("UPDATE opera SET `desig` = '"+dg+"' WHERE `id` = '"+id+"' ");
+            DBC.iud("UPDATE opera SET `serial` = '"+sk+"' WHERE `id` = '"+id+"' ");
+            DBC.iud("UPDATE opera SET `password` = '"+pw+"' WHERE `id` = '"+id+"' ");
+            JOptionPane.showMessageDialog(this,"Row Update successfully","DONE!", JOptionPane.INFORMATION_MESSAGE);
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+          MessageFormat header =new MessageFormat("Search Result Overview of Operators Sector");
+        MessageFormat footer = new MessageFormat("HaarangaICT_SriLanka Print,Thank you!");
+        
+        try {
+            
+            jTable1.print(JTable.PrintMode.NORMAL, header, footer);
+            
+            
+            
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Admin_panel ap = new Admin_panel();
+        ap.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+        // TODO add your handling code here:
+         DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+        String text = jTextField1.getText();
+        TableRowSorter<DefaultTableModel> trs = new TableRowSorter <DefaultTableModel>(dtm);
+        jTable1.setRowSorter(trs);
+        trs.setRowFilter(RowFilter.regexFilter(text));
+    }//GEN-LAST:event_jTextField1KeyReleased
 
     /**
      * @param args the command line arguments

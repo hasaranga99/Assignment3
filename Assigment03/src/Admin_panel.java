@@ -1,3 +1,8 @@
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -32,6 +37,7 @@ public class Admin_panel extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -55,6 +61,11 @@ public class Admin_panel extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Arial", 2, 24)); // NOI18N
         jButton2.setText("ADMINISTRATION VIEW");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel10.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
@@ -63,6 +74,19 @@ public class Admin_panel extends javax.swing.JFrame {
 
         jButton3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButton3.setText("BACK");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setFont(new java.awt.Font("Arial", 2, 24)); // NOI18N
+        jButton4.setText("SYSTEM  BACKUP");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -77,12 +101,18 @@ public class Admin_panel extends javax.swing.JFrame {
                 .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(jButton3)
-                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(jButton3))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(362, 362, 362)
+                        .addComponent(jButton2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(391, 391, 391)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton4)
+                            .addComponent(jButton1))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -90,11 +120,13 @@ public class Admin_panel extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(92, 92, 92)
+                .addGap(88, 88, 88)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22)
+                .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 256, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
+                .addComponent(jButton4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 200, Short.MAX_VALUE)
                 .addComponent(jButton3)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel10)
@@ -112,7 +144,29 @@ public class Admin_panel extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        Admin_Op ao = new Admin_Op();
+        ao.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        Admin_panel ap = new Admin_panel();
+        ap.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        Login log = new Login();
+        log.setVisible(true);
+        this.setVisible(false);         
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        MysqlBackUpProgram();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -153,9 +207,74 @@ public class Admin_panel extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+
+    
+public void MysqlBackUpProgram(){
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        String dbHost = "localhost"; 
+	String dbPort = "3307";
+        String dbName = "user_management_assigment3";
+        String dbUser = "root";
+        String dbPass = "Menuka1999";
+        String dumpExe = "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysqldump.exe";
+        String dumpSavePath = "C:\\mySqlBackup\\";
+        String fileName = "backUpFile_"+sdf.format(new Date().getTime())+".sql";
+        Backupdbtosql(dbHost, dbPort, dbUser, dbPass, dbName, dumpExe, dumpSavePath, fileName);
+}       
+public void Backupdbtosql(String host,String port,String user,String password,String dbName,String dumpExe,String dumpSavePath,String fileName){
+    try {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+
+	        String batchCommand;
+	        if (password != ""){
+                    batchCommand = dumpExe + 
+		        		 " -h " + host + 
+		        		 " --port " + port + 
+		        		 " -u " + user + 
+		        		 " --password=" + password + 
+		        		 " --add-drop-database -B " + dbName + 
+		        		 " -r \"" + dumpSavePath + "" + "backup"+new Date().getTime()+".sql";
+                }else{
+                batchCommand = dumpExe + 
+	        			 " -h " + host + 
+	        			 " --port " + "3306" + 
+	        			 " -u " + user + 
+	        			 " --add-drop-database -B " + dbName + 
+	        			 " -r \"" + dumpSavePath + "" + "backup"+new Date().getTime()+".sql";    
+                }    
+    System.out.println("Execute Commond - " +batchCommand);
+	        System.out.println("Processing.. "+ "STARTED " +sdf.format(new Date()));
+	        Date sDate = new Date();
+	        Process runtimeProcess = Runtime.getRuntime().exec(batchCommand);
+	        int processComplete = runtimeProcess.waitFor();
+	        
+	        System.out.println("Processing.. "+ "END " +sdf.format(new Date()));
+	        Date eDate = new Date();
+	        long duration =  eDate.getTime() - sDate.getTime();
+	        int seconds=(int) ((duration/1000)%60);
+	        long minutes=((duration-seconds)/1000)/60;
+	        System.err.println("TOTAL TIME : " + minutes +" minutes :: ");
+	        System.err.print(seconds +" seconds :: ");
+	        System.err.print(duration +" milliseconds");
+                if (processComplete == 0) {
+	            System.out.println("Backup Complete");
+                    JOptionPane.showMessageDialog(this, "Backup Complete", "Successfully", JOptionPane.INFORMATION_MESSAGE); 
+	        } else {
+	            System.out.println("Backup Failure");
+                    JOptionPane.showMessageDialog(this, "Backup Failed", "Error", JOptionPane.ERROR_MESSAGE); 
+	        }
+    } catch (Exception ex) {
+      System.err.println(ex.getMessage());
+    }
+}
+static void Backupdbtosql() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }    
+    
 }
