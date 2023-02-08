@@ -1,3 +1,8 @@
+
+import java.sql.ResultSet;
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -15,6 +20,34 @@ public class Administer extends javax.swing.JFrame {
      */
     public Administer() {
         initComponents();
+        
+         try {
+            
+            ResultSet rs =  DBC.search("SELECT * FROM opera");
+            while(rs.next()){
+            String un = rs.getString("username");
+            String fn = rs.getString("fullname");
+            String em = rs.getString("email");
+            String cn = rs.getString("contact");
+            String ad = rs.getString("address");
+            String dg = rs.getString("desig");
+            
+            Vector v = new Vector();
+            v.add(un);
+            v.add(fn);
+            v.add(em);
+            v.add(cn);
+            v.add(ad);
+            v.add(dg);
+            
+            DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+            dtm.addRow(v);
+            }
+            
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -55,10 +88,7 @@ public class Administer extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "USERNAME", "FULLNAME", "EMAIL", "CONTACT NO", "ADDRESS", "DESIGNATION"

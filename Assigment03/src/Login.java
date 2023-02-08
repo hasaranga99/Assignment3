@@ -1,3 +1,7 @@
+
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -160,6 +164,47 @@ public class Login extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        try {
+            String un = jTextField1.getText();
+            String pw = jPasswordField1.getText();
+            
+            ResultSet rs  = DBC.search("SELECT * FROM  user  WHERE `username` = '"+un+"' ");
+            if (rs.next()){
+            String id  = rs.getString("id");
+            String pw1 =  rs.getString("password");
+            String sk = rs.getString("serial");
+            if(pw.equals(pw1)){
+                if(sk.equals("1")){
+                Admin_panel ap = new Admin_panel();
+                ap.setVisible(true);
+                this.dispose();
+            
+            }else {
+            Operation o = new Operation();
+            o.setVisible(true);
+            this.dispose();
+            
+            }
+            }else {
+                JOptionPane.showMessageDialog(this,"Your password is incorrect!, please Enter Correct password & Try to login ","ERROR!",JOptionPane.ERROR_MESSAGE);
+                jPasswordField1.setText(null);
+                jPasswordField1.grabFocus();
+                
+            
+            }
+            
+            }else {
+            
+            JOptionPane.showMessageDialog(this,"Your username is incorrect!, please Enter Correct password & Try to login ","ERROR!",JOptionPane.ERROR_MESSAGE);
+            jTextField1.setText(null);
+            jTextField1.grabFocus();
+            jPasswordField1.setText(null);
+            
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
