@@ -151,8 +151,8 @@ public class Admin_panel extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        Admin_panel ap = new Admin_panel();
-        ap.setVisible(true);
+        Administer a = new Administer();
+        a.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 

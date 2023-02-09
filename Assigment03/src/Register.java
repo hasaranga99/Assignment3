@@ -335,7 +335,11 @@ public class Register extends javax.swing.JFrame {
                 if (sk.equals("0") | sk.equals("1")){
                 DBC.iud("INSERT INTO user(`username`,`password`,`serial`)VALUES ('"+un+"','"+pw+"','"+sk+"')");
                JOptionPane.showMessageDialog(this, "New user added Successfully!", "DONE!", JOptionPane.INFORMATION_MESSAGE);
-                }
+                }else {
+                JOptionPane.showMessageDialog(this, "Please Enter Valid SERIAL KEY! ","ERROR!",JOptionPane.ERROR_MESSAGE);
+                jPasswordField1.setText(null);
+                jPasswordField1.grabFocus();
+                } 
                 if(sk.equals("0")){
                     DBC.iud("INSERT INTO opera(`username`,`fullname`,`email`,`contact`,`address`,`desig`,`serial`,`password`)VALUES('"+un+"','"+fn+"','"+em+"','"+cn+"','"+ad+"','"+dg+"','"+sk+"','"+pw+"')");
                     JOptionPane.showMessageDialog(this, "New Operater added Successfully!", "DONE!", JOptionPane.INFORMATION_MESSAGE);
@@ -352,10 +356,6 @@ public class Register extends javax.swing.JFrame {
                     this.dispose();
                 
                     
-                }else {
-                JOptionPane.showMessageDialog(this, "Please Enter Valid SERIAL KEY! ","ERROR!",JOptionPane.ERROR_MESSAGE);
-                jPasswordField1.setText(null);
-                jPasswordField1.grabFocus();
                 }
                  
             } catch (Exception e) {
